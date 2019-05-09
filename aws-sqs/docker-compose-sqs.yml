@@ -1,0 +1,24 @@
+version: '3.5'
+
+services:
+  sqs:
+    image: roribio16/alpine-sqs:latest
+    ports:
+      - 9324:9324
+      - 9325:9325
+    networks:
+      - sqs
+  init:
+    image: datinc/awscli:20190509
+    environment:
+      - SQS_ENDPOINT_URL=http://sqs:9324
+      - SQS_QUEUES=queue1;queue2
+    entrypoint: /app/create_queue.sh
+    volumes:
+      - ./scripts:/app
+    networks:
+      - sqs
+
+networks:
+  sqs:
+    driver: bridge
