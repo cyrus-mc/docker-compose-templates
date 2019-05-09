@@ -6,7 +6,7 @@ services:
     ports:
       - 4567:4567
     networks:
-      - sqs
+      - kinesis
   init:
     image: datinc/awscli:20190509
     environment:
@@ -16,9 +16,9 @@ services:
     volumes:
       - ./scripts:/app
     networks:
-      - sqs
+      - kinesis
 
 networks:
-  sqs:
+  kinesis:
     driver: bridge
 
