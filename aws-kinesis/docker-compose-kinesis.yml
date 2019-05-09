@@ -1,0 +1,24 @@
+version: '3.5'
+
+services:
+  kinesis:
+    image: instructure/kinesalite:latest
+    ports:
+      - 4567:4567
+    networks:
+      - sqs
+  init:
+    image: datinc/awscli:20190509
+    environment:
+      - KINESIS_ENDPOINT_URL=http://kinesis:4567/
+      - KINESIS_STREAMS=stream1;stream2
+    entrypoint: /app/create_stream.sh
+    volumes:
+      - ./scripts:/app
+    networks:
+      - sqs
+
+networks:
+  sqs:
+    driver: bridge
+
