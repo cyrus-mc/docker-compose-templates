@@ -47,16 +47,3 @@ do
     aws --endpoint-url ${ENDPOINT} sqs purge-queue --queue-url ${ENDPOINT}/queue/$queue
   done
 done
-# first thing is to create queue (call is idempotent)
-
-#echo $QUEUE_URL
-# loop forever
-#while true;
-#do
-#  DATE=`date`
-#  aws --endpoint-url=$SQS_ENDPOINT sqs send-message --queue-url $QUEUE_URL --message-body "Last update @ $DATE"
-
-#  sleep 30
-  # purge queue
-#  aws --endpoint-url=$SQS_ENDPOINT sqs purge-queue --queue-url $QUEUE_URL
-#done
