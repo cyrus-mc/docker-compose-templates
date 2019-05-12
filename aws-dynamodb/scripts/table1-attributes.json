@@ -1,0 +1,10 @@
+[
+  {
+    "AttributeName": "id",
+    "AttributeType": "N"
+  },
+  {
+     "AttributeName": "userId",
+     "AttributeType": "N"
+  }
+]
